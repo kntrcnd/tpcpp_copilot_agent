@@ -2,6 +2,7 @@ import requests
 import json
 import time
 import os
+from urllib.parse import quote
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -188,21 +189,47 @@ def monitor_continue():
 
 # ---------------- MAIN ----------------
 
+# GitHub repo info
+username = "kntrcnd"
+repo = "tpcpp_copilot_agent"
+branch = "main"
+folder_path = "pdf/test"  # folder inside repo
+
+# Start Copilot conversation
 start_conversation()
 
-pdf_url = "https://raw.githubusercontent.com/kntrcnd/tpcpp_copilot_agent/pdf/test/main/2023NS424-1-Notice of Action (Self-Rep).pdf"
+# Get list of files in GitHub folder dynamically
+api_url = f"https://api.github.com/repos/{username}/{repo}/contents/{folder_path}?ref={branch}"
+response = requests.get(api_url)
+response.raise_for_status()
+files = response.json()
 
-send_message(
-    "Extract this PDF into structured JSON. Return ONLY JSON. End with 'Parsing completed!'",
-    pdf_url
-)
+# Filter only PDFs and generate raw URLs
+pdf_urls = [
+    f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{folder_path}/{quote(f['name'])}"
+    for f in files
+    if f["name"].lower().endswith(".pdf")
+]
 
-print("PDF sent")
+if not pdf_urls:
+    raise Exception("No PDFs found in GitHub folder.")
 
-while not FINISHED:
+print(f"Found {len(pdf_urls)} PDF(s) to process.")
 
-    poll_messages()
+# Loop through each PDF and send to Copilot
+for pdf_url in pdf_urls:
+    print(f"\nSending PDF: {pdf_url}")
 
-    monitor_continue()
+    send_message(
+        "Extract this PDF into structured JSON. Return ONLY JSON. End with 'Parsing completed!'",
+        pdf_url
+    )
 
-    time.sleep(2)
+    FINISHED = False  # reset for each PDF
+    continue_attempts = 0
+    last_activity_time = time.time()
+
+    while not FINISHED:
+        poll_messages()
+        monitor_continue()
+        time.sleep(2)
