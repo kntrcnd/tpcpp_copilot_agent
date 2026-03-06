@@ -1,0 +1,213 @@
+import requests
+import json
+import time
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+SECRET = os.getenv("DIRECTLINE_SECRET")
+USER_ID = os.getenv("USER_ID", "api-user")
+
+BASE_URL = "https://directline.botframework.com/v3/directline"
+
+conversation_id = None
+watermark = None
+
+response_buffer = ""
+last_activity_time = time.time()
+
+continue_attempts = 0
+MAX_CONTINUE = 20
+
+FINISHED = False
+
+
+def start_conversation():
+    global conversation_id
+
+    try:
+        res = requests.post(
+            f"{BASE_URL}/conversations",
+            headers={"Authorization": f"Bearer {SECRET}"}
+        )
+
+        res.raise_for_status()
+
+        data = res.json()
+
+        conversation_id = data["conversationId"]
+
+        print("Conversation started:", conversation_id)
+
+    except Exception as e:
+        print("Conversation start failed:", e)
+        raise
+
+
+def send_message(text, attachment_url=None):
+
+    try:
+
+        url = f"{BASE_URL}/conversations/{conversation_id}/activities"
+
+        payload = {
+            "type": "message",
+            "from": {"id": USER_ID},
+            "text": text
+        }
+
+        if attachment_url:
+            payload["attachments"] = [
+                {
+                    "contentType": "application/pdf",
+                    "contentUrl": attachment_url,
+                    "name": "input.pdf"
+                }
+            ]
+
+        requests.post(
+            url,
+            headers={
+                "Authorization": f"Bearer {SECRET}",
+                "Content-Type": "application/json"
+            },
+            json=payload
+        )
+
+    except Exception as e:
+        print("Send message error:", e)
+
+
+def save_response():
+    global response_buffer
+
+    try:
+
+        with open("copilot_response.txt", "w", encoding="utf-8") as f:
+            f.write(response_buffer)
+
+        print("\nFull response saved -> copilot_response.txt")
+
+    except Exception as e:
+        print("Save error:", e)
+
+
+def poll_messages():
+
+    global watermark
+    global response_buffer
+    global last_activity_time
+    global FINISHED
+
+    try:
+
+        url = f"{BASE_URL}/conversations/{conversation_id}/activities"
+
+        if watermark:
+            url += f"?watermark={watermark}"
+
+        res = requests.get(
+            url,
+            headers={"Authorization": f"Bearer {SECRET}"}
+        )
+
+        res.raise_for_status()
+
+        data = res.json()
+
+        watermark = data.get("watermark")
+
+        activities = data.get("activities", [])
+
+        for act in activities:
+
+            if act.get("type") != "message":
+                continue
+
+            if act.get("from", {}).get("id") == USER_ID:
+                continue
+
+            text = act.get("text")
+
+            if not text:
+                continue
+
+            print("\n--- Copilot Response ---\n")
+            print(text)
+            print("\n------------------------\n")
+
+            response_buffer += text + "\n"
+
+            last_activity_time = time.time()
+
+            if "Parsing Completed..." in text:
+
+                print("\nFinal completion message detected.")
+
+                save_response()
+
+                FINISHED = True
+
+                return
+
+    except Exception as e:
+        print("Polling error:", e)
+
+
+def monitor_continue():
+
+    global continue_attempts
+    global last_activity_time
+
+    try:
+
+        idle = time.time() - last_activity_time
+
+        if idle > 10 and continue_attempts < MAX_CONTINUE:
+
+            continue_attempts += 1
+
+            print("Sending Continue", continue_attempts)
+
+            send_message("Continue")
+
+            last_activity_time = time.time()
+
+        if continue_attempts >= MAX_CONTINUE:
+
+            print("Max Continue attempts reached")
+
+            save_response()
+
+            exit()
+
+    except Exception as e:
+        print("Monitor error:", e)
+
+
+# ---------------- MAIN ----------------
+
+folder_path = r"D:\Projects\TPCPP\PDF samples\test"
+
+# get first pdf file
+pdf_files = [f for f in os.listdir(folder_path) if f.lower().endswith(".pdf")]
+
+if not pdf_files:
+    raise Exception("No PDF files found in folder.")
+
+pdf_file = os.path.join(folder_path, pdf_files[0])
+
+start_conversation()
+
+send_message(
+    "Extract this PDF into structured JSON. Return ONLY JSON. End with 'Parsing completed!'",
+    pdf_file
+)
+
+print(f"PDF sent: {pdf_file}")
+
+while not FINISHED:
+    poll_messages()
+    monitor_continue()
+    time.sleep(2)
