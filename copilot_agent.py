@@ -188,26 +188,21 @@ def monitor_continue():
 
 # ---------------- MAIN ----------------
 
-folder_path = r"D:\Projects\TPCPP\PDF samples\test"
-
-# get first pdf file
-pdf_files = [f for f in os.listdir(folder_path) if f.lower().endswith(".pdf")]
-
-if not pdf_files:
-    raise Exception("No PDF files found in folder.")
-
-pdf_file = os.path.join(folder_path, pdf_files[0])
-
 start_conversation()
+
+pdf_url = "https://raw.githubusercontent.com/kntrcnd/tpcpp_copilot_agent/pdf/test/main/2023NS424-1-Notice of Action (Self-Rep).pdf"
 
 send_message(
     "Extract this PDF into structured JSON. Return ONLY JSON. End with 'Parsing completed!'",
-    pdf_file
+    pdf_url
 )
 
-print(f"PDF sent: {pdf_file}")
+print("PDF sent")
 
 while not FINISHED:
+
     poll_messages()
+
     monitor_continue()
+
     time.sleep(2)
