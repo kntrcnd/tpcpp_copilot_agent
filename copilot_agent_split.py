@@ -11,8 +11,8 @@ load_dotenv()
 
 SECRET = os.getenv("DIRECTLINE_SECRET")
 USER_ID = os.getenv("USER_ID", "api-user")
-
 BASE_URL = "https://directline.botframework.com/v3/directline"
+OUTPUT_ROOT = r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output"
 
 conversation_id = None
 watermark = None
@@ -23,7 +23,7 @@ MAX_CONTINUE = 20
 FINISHED = False
 first_response_received = False
 
-OUTPUT_ROOT = r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output"
+# ---------------- Copilot communication functions ----------------
 
 def start_conversation():
     global conversation_id
@@ -43,64 +43,23 @@ def send_message(text, attachment_url=None):
         "text": text
     }
     if attachment_url:
-        payload["attachments"] = [
-            {
-                "contentType": "application/pdf",
-                "contentUrl": attachment_url,
-                "name": "input.pdf"
-            }
-        ]
+        payload["attachments"] = [{
+            "contentType": "application/pdf",
+            "contentUrl": attachment_url,
+            "name": "input.pdf"
+        }]
     res = requests.post(
         url,
-        headers={
-            "Authorization": f"Bearer {SECRET}",
-            "Content-Type": "application/json"
-        },
+        headers={"Authorization": f"Bearer {SECRET}", "Content-Type": "application/json"},
         json=payload
     )
     res.raise_for_status()
 
 def clean_json_text(raw_text):
-    # Remove line comments starting with //
+    # Remove comments // and code fences ```json ```
     text_no_comments = re.sub(r'//.*', '', raw_text)
-    # Remove any leading/trailing whitespace
-    text_no_comments = text_no_comments.strip()
-    # Optional: remove code fences ```json or ``` markers
     text_no_comments = re.sub(r'```json|```', '', text_no_comments)
-    return text_no_comments
-
-def save_response(pdf_name):
-    global response_buffer
-
-    # Extract case ID from PDF name
-    match = re.match(r'([A-Za-z0-9]+-\d+)', pdf_name)
-    case_id = match.group(1) if match else pdf_name
-
-    # Create folder based on case ID
-    pdf_folder = os.path.join(OUTPUT_ROOT, case_id)
-    os.makedirs(pdf_folder, exist_ok=True)
-
-    # Clean the response buffer
-    cleaned_json = clean_json_text(response_buffer)
-
-    # Optionally validate JSON before saving
-    try:
-        json_object = json.loads(cleaned_json)
-        # Reformat nicely with indentation
-        cleaned_json = json.dumps(json_object, indent=2)
-    except json.JSONDecodeError:
-        print("Warning: JSON may be incomplete or invalid. Saving raw cleaned text.")
-
-    # Create filename with timestamp
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-    file_name = f"{case_id}_{timestamp}.json"
-    output_path = os.path.join(pdf_folder, file_name)
-
-    # Save the cleaned JSON
-    with open(output_path, "w", encoding="utf-8") as f:
-        f.write(cleaned_json)
-
-    print(f"\nFull response saved -> {output_path}")
+    return text_no_comments.strip()
 
 def is_json_complete(text):
     try:
@@ -138,100 +97,99 @@ def poll_messages():
 
 def monitor_continue():
     global continue_attempts, last_activity_time, FINISHED, response_buffer
-
     idle = time.time() - last_activity_time
-
     if idle > 10 and not FINISHED:
-
         buffer_lower = response_buffer.lower()
-
-        truncated = (
-            "continues for pages" in buffer_lower
-            or "remaining pages" in buffer_lower
-            or "same detailed structure" in buffer_lower
-        )
-
+        truncated = ("continues for pages" in buffer_lower or
+                     "remaining pages" in buffer_lower or
+                     "same detailed structure" in buffer_lower)
         if not is_json_complete(response_buffer) or truncated:
-
             if continue_attempts < MAX_CONTINUE:
                 continue_attempts += 1
-
                 print(f"Sending Continue #{continue_attempts}")
-
-                send_message(
-                    "CONTINUE the JSON exactly where it stopped. "
-                    "Do not summarize. Do not describe remaining pages. "
-                    "Output only valid JSON."
-                )
-
+                send_message("CONTINUE the JSON exactly where it stopped. Do not summarize. Output only JSON.")
                 last_activity_time = time.time()
-
             else:
                 print("Max Continue attempts reached.")
                 FINISHED = True
-
         else:
             FINISHED = True
 
-            
-
-os.makedirs(OUTPUT_ROOT, exist_ok=True)
-
-# ---------------- Configuration ----------------
-username = "kntrcnd"
-repo = "tpcpp_copilot_agent"
-branch = "main"
-folder_path = "pdf/test"  # root folder to start scanning
-
-# ---------------- Recursive PDF fetch ----------------
+# ---------------- GitHub recursive PDF fetch ----------------
 def get_github_pdfs(user, repo, branch, path):
     pdf_list = []
-
     api_url = f"https://api.github.com/repos/{user}/{repo}/contents/{path}?ref={branch}"
     response = requests.get(api_url)
     response.raise_for_status()
     items = response.json()
-
     for item in items:
         if item["type"] == "file" and item["name"].lower().endswith(".pdf"):
-            pdf_list.append({
-                "name": item["name"],
-                "path": path
-            })
+            pdf_list.append({"name": item["name"], "path": path})
         elif item["type"] == "dir":
-            # Recurse into subfolder
             pdf_list.extend(get_github_pdfs(user, repo, branch, item["path"]))
-
     return pdf_list
 
-# ---------------- Fetch all PDFs ----------------
-pdf_files = get_github_pdfs(username, repo, branch, folder_path)
+# ---------------- Main pipeline ----------------
+username = "kntrcnd"
+repo = "tpcpp_copilot_agent"
+branch = "main"
+folder_path = "pdf/test"  # root folder containing split PDF folders
 
+os.makedirs(OUTPUT_ROOT, exist_ok=True)
+
+# Fetch all PDFs recursively
+pdf_files = get_github_pdfs(username, repo, branch, folder_path)
 if not pdf_files:
     raise Exception("No PDFs found in GitHub folder/subfolders.")
-print(f"Found {len(pdf_files)} PDF(s) to process.")
 
+# Group PDFs by base folder (assumes all splits are in one folder per base PDF)
+from collections import defaultdict
+pdf_groups = defaultdict(list)
 for f in pdf_files:
-    pdf_name = os.path.splitext(f["name"])[0]  # base name for folder/JSON
-    pdf_url = f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{quote(f['path'])}/{quote(f['name'])}"
-    print(f"\nSending PDF: {pdf_url}")
+    base_folder = f["path"].split("/")[-1]  # use last folder as base
+    pdf_groups[base_folder].append(f)
 
-    response_buffer = ""
-    FINISHED = False
-    continue_attempts = 0
-    last_activity_time = time.time()
-    first_response_received = False
+# Process each group (all split pages for one base PDF)
+for base_folder, pdf_list in pdf_groups.items():
+    print(f"\nProcessing base PDF folder: {base_folder}")
+    compiled_json = []
 
-    start_conversation()
+    # Sort pages by name to preserve order
+    pdf_list.sort(key=lambda x: x["name"])
 
-    send_message(
-        "Extract this PDF into structured JSON. Return ONLY JSON.",
-        pdf_url
-    )
+    for f in pdf_list:
+        pdf_name = os.path.splitext(f["name"])[0]
+        pdf_url = f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{quote(f['path'])}/{quote(f['name'])}"
+        print(f"\nSending PDF: {pdf_url}")
 
-    while not FINISHED:
-        poll_messages()
-        monitor_continue()
-        time.sleep(2)
+        response_buffer = ""
+        FINISHED = False
+        continue_attempts = 0
+        last_activity_time = time.time()
+        first_response_received = False
 
-    save_response(pdf_name)
+        start_conversation()
+
+        send_message("Extract this PDF into structured JSON. Return ONLY JSON.", pdf_url)
+
+        while not FINISHED:
+            poll_messages()
+            monitor_continue()
+            time.sleep(2)
+
+        cleaned_json = clean_json_text(response_buffer)
+        try:
+            page_json = json.loads(cleaned_json)
+        except json.JSONDecodeError:
+            print(f"Warning: JSON invalid for {pdf_name}, saving raw cleaned text only.")
+            page_json = cleaned_json
+        compiled_json.append(page_json)
+
+    # Save compiled JSON for the entire base PDF
+    base_output_folder = os.path.join(OUTPUT_ROOT, base_folder)
+    os.makedirs(base_output_folder, exist_ok=True)
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    output_file = os.path.join(base_output_folder, f"{base_folder}_compiled_{timestamp}.json")
+    with open(output_file, "w", encoding="utf-8") as f:
+        json.dump(compiled_json, f, indent=2)
+    print(f"\nCompiled JSON saved -> {output_file}")
