@@ -154,13 +154,16 @@ for base_folder, pdf_list in pdf_groups.items():
     print(f"\nProcessing base PDF folder: {base_folder}")
     compiled_json = []
 
-    # Sort pages by name to preserve order
-    pdf_list.sort(key=lambda x: x["name"])
+    # ---------------- Start timer ----------------
+    current_time = datetime.now()
 
-    for f in pdf_list:
+    # Sort pages naturally
+    pdf_list.sort(key=lambda x: natural_sort_key(x["name"]))
+
+    for page_index, f in enumerate(pdf_list, start=1):
         pdf_name = os.path.splitext(f["name"])[0]
         pdf_url = f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{quote(f['path'])}/{quote(f['name'])}"
-        print(f"\nSending PDF: {pdf_url}")
+        print(f"\nSending PDF {page_index}/{len(pdf_list)}: {pdf_url}")
 
         response_buffer = ""
         FINISHED = False
@@ -169,7 +172,6 @@ for base_folder, pdf_list in pdf_groups.items():
         first_response_received = False
 
         start_conversation()
-
         send_message("Extract this PDF into structured JSON. Return ONLY JSON.", pdf_url)
 
         while not FINISHED:
@@ -183,13 +185,24 @@ for base_folder, pdf_list in pdf_groups.items():
         except json.JSONDecodeError:
             print(f"Warning: JSON invalid for {pdf_name}, saving raw cleaned text only.")
             page_json = cleaned_json
+
         compiled_json.append(page_json)
 
-    # Save compiled JSON for the entire base PDF
+    # ---------------- End timer ----------------
+    end_time = datetime.now()
+    elapsed_minutes = (end_time - current_time).total_seconds() / 60
+
+    print("\n--- Processing finished ---")
+    print(f"Started: {current_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Ended:   {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Elapsed Time: {elapsed_minutes:.2f} minutes ({(end_time - current_time).total_seconds():.0f} seconds)")
+
+    # Save compiled JSON for this base PDF
     base_output_folder = os.path.join(OUTPUT_ROOT, base_folder)
     os.makedirs(base_output_folder, exist_ok=True)
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    timestamp = end_time.strftime("%Y-%m-%d_%H-%M-%S")
     output_file = os.path.join(base_output_folder, f"{base_folder}_compiled_{timestamp}.json")
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(compiled_json, f, indent=2)
+
     print(f"\nCompiled JSON saved -> {output_file}")
