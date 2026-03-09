@@ -13,6 +13,7 @@ SECRET = os.getenv("DIRECTLINE_SECRET")
 USER_ID = os.getenv("USER_ID", "api-user")
 BASE_URL = "https://directline.botframework.com/v3/directline"
 OUTPUT_ROOT = r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output"
+processing_time_folder = r"D:\Projects\TPCPP\Processing Time"
 
 conversation_id = None
 watermark = None
@@ -22,6 +23,8 @@ continue_attempts = 0
 MAX_CONTINUE = 20
 FINISHED = False
 first_response_received = False
+
+os.makedirs(processing_time_folder, exist_ok=True)
 
 # ---------------- Copilot communication functions ----------------
 
@@ -115,6 +118,12 @@ def monitor_continue():
         else:
             FINISHED = True
 
+def natural_sort_key(s):
+    """
+    Splits a string into text and number parts so that 'Page-2' < 'Page-10'.
+    """
+    return [int(t) if t.isdigit() else t.lower() for t in re.split(r'(\d+)', s)]
+
 # ---------------- GitHub recursive PDF fetch ----------------
 def get_github_pdfs(user, repo, branch, path):
     pdf_list = []
@@ -133,12 +142,12 @@ def get_github_pdfs(user, repo, branch, path):
 username = "kntrcnd"
 repo = "tpcpp_copilot_agent"
 branch = "main"
-folder_path = "pdf/test"  # root folder containing split PDF folders
+folder_path_split = "pdf/split"  # root folder containing split PDF folders
 
 os.makedirs(OUTPUT_ROOT, exist_ok=True)
 
 # Fetch all PDFs recursively
-pdf_files = get_github_pdfs(username, repo, branch, folder_path)
+pdf_files = get_github_pdfs(username, repo, branch, folder_path_split)
 if not pdf_files:
     raise Exception("No PDFs found in GitHub folder/subfolders.")
 
@@ -189,13 +198,34 @@ for base_folder, pdf_list in pdf_groups.items():
         compiled_json.append(page_json)
 
     # ---------------- End timer ----------------
+    # Inside your base PDF processing loop, after you finish processing all pages:
     end_time = datetime.now()
-    elapsed_minutes = (end_time - current_time).total_seconds() / 60
+    elapsed_seconds = (end_time - current_time).total_seconds()
+    elapsed_minutes = elapsed_seconds / 60
 
+    # --- Print timing info to console ---
     print("\n--- Processing finished ---")
     print(f"Started: {current_time.strftime('%Y-%m-%d %H:%M:%S')}")
     print(f"Ended:   {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
-    print(f"Elapsed Time: {elapsed_minutes:.2f} minutes ({(end_time - current_time).total_seconds():.0f} seconds)")
+    print(f"Elapsed Time: {elapsed_minutes:.2f} minutes ({elapsed_seconds:.0f} seconds)")
+
+    # --- Save timing info to separate JSON file ---
+    timer_data = {
+        "base_pdf_folder": base_folder,
+        "started_at": current_time.strftime('%Y-%m-%d %H:%M:%S'),
+        "ended_at": end_time.strftime('%Y-%m-%d %H:%M:%S'),
+        "elapsed_minutes": round(elapsed_minutes, 2),
+        "elapsed_seconds": int(elapsed_seconds)
+    }
+
+    timestamp_str = end_time.strftime("%Y-%m-%d_%H-%M-%S")
+    timer_file_name = f"{base_folder}_processing_time_{timestamp_str}.json"
+    timer_file_path = os.path.join(processing_time_folder, timer_file_name)
+
+    with open(timer_file_path, "w", encoding="utf-8") as f:
+        json.dump(timer_data, f, indent=2)
+
+    print(f"Processing time JSON saved -> {timer_file_path}")
 
     # Save compiled JSON for this base PDF
     base_output_folder = os.path.join(OUTPUT_ROOT, base_folder)

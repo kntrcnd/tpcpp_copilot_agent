@@ -1,0 +1,364 @@
+[
+  {
+    "document": {
+      "total_pages": 1,
+      "pages": [
+        {
+          "page_number": 1,
+          "blocks": [
+            {
+              "block_id": "b1",
+              "block_type": "heading",
+              "level": 1,
+              "spans": [
+                {
+                  "text": "Letterhead Factum",
+                  "styles": [
+                    "normal",
+                    "bold"
+                  ],
+                  "position": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "document": {
+      "total_pages": 1,
+      "pages": [
+        {
+          "page_number": 1,
+          "blocks": [
+            {
+              "block_id": "b1",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "has a real chance of success at a later trial or application hearing, would be a patently unjust exercise of discretion.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b2",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "It is for the responding party to show a real chance of success. If the answer is No, then summary judgment issues to dismiss the ill-fated pleading.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b3",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "\u2022 Fourth Question: If the answer to #3 is Yes, leaving only an issue of law with a real chance of success, then, under Rule 13.04(6)(a): Should the judge exercise the \"discretion\" to finally determine the issue of law?",
+                  "styles": [
+                    "normal",
+                    "bold"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b4",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "If the judge does not exercise this discretion, then: (1) the judge dismisses the motion for summary judgment, and (2) the matter with a \"real chance of success\" goes onward either to a converted application under Rules 13.08(1)(b) and 6, as discussed below [paras. 37-42], or to trial. If the judge exercises the discretion, he or she determines the full merits of the legal issue once and for all. Then the judge's conclusion generates issue estoppel, subject to any appeal.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b5",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "This is not the case to catalogue the principles that will govern the judge's discretion under Rule 13.04(6)(a). Those principles will develop over time. Proportionality criteria, such as those discussed in Hryniak v. Maudlin, [2014] 1 S.C.R. 87 (S.C.C.), will play a role.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b6",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "A party who wishes the judge to exercise discretion under Rule 13.04(6)(a) should state that request, with notice to the other party. The judge who, on his or her own motion, intends to exercise the discretion under Rule 13.04(6)(a) should notify the parties that the point is under consideration. Then, after the hearing, the judge's decision should state whether and why the discretion was exercised. The reasons for this process are obvious: (1) fairness requires that both parties know the ground rules and whether the ruling will generate issue estoppel; (2) the judge's standard differs between summary mode (\"real chance of success\") and full-merits mode; (3) the judge's choice may affect the standard of review on appeal.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b7",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "[emphasis original]",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b8",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "27. The test for summary judgment on the evidence has been applied in situations where a limitation period to file a claim has expired.16 In this case, we submit that the two-year limitation period in the Limitation of Actions Act applies. Section 8 of the LAA is as follows:",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b9",
+              "block_type": "footnotes",
+              "spans": [
+                {
+                  "text": "16 See: Cameron v Nova Scotia Association of Health Organizations Long Term Disability Plan, 2019 NSCA 30.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "document": {
+      "total_pages": 1,
+      "pages": [
+        {
+          "page_number": 1,
+          "blocks": [
+            {
+              "block_id": "b10",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "document": {
+      "total_pages": 1,
+      "pages": [
+        {
+          "page_number": 1,
+          "blocks": [
+            {
+              "block_id": "b1",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "that a plaintiff does not need knowledge of all the constituent elements of a claim to discover that claim.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b2",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "29. Discoverability under limitations statutes incorporates the common law standard that the limitation period begins to run when the material facts on which the claim is based have been discovered or ought to have been discovered by the claimant exercising \u201creasonable diligence\u201d.18 The test is met if the moving party can show that the claimant either had actual knowledge of the material facts, or that the claimant ought to have discovered those material facts by exercising reasonable diligence. Direct and circumstantial evidence may be used to demonstrate the requisite level of knowledge.19 Even a suspicion alone may be sufficient to trigger the claimant\u2019s exercise of due diligence.20 \u201cPerfect knowledge\u201d or certainty that the defendant is liable for a claim is not required.21",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b3",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "30. The Ontario Court of Appeal discussed what is necessary for the claimant to know for the purposes of limitations in Gordon Dunk Farms Limited v HFH Inc,22 as follows:",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                }
+              ]
+            },
+            {
+              "block_id": "b4",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "34 A plaintiff need not know the exact act or omission by the defendant that caused the loss in order to start the limitation period running.",
+                  "styles": [
+                    "normal",
+                    "bold"
+                  ],
+                  "position": 0
+                },
+                {
+                  "text": " What it needs to know is that an incident occurred that resulted in a loss (s. 5(1)(a)(i)), that the defendant did or failed to do something to cause that loss (s. 5(1)(a)(ii) and (iii)), and that, having regard to the nature of the injury, loss, or damage, a court proceeding is an appropriate means to seek a remedy (s. 5(1)(a)(iv)).",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 1
+                }
+              ]
+            },
+            {
+              "block_id": "b5",
+              "block_type": "paragraph",
+              "spans": [
+                {
+                  "text": "35 The damages and injury caused by a car accident provide an instructive example. The defendant's car slams into the plaintiff's car. The plaintiff knows the defendant was driving, but may not know whether the defendant fell asleep at the wheel, neglected to get the brakes of the car serviced, was distracted by a phone call, was drunk, or was just careless. The plaintiff will plead all of those allegations as part of its negligence claim. In discovery, the true facts will likely be disclosed. It is also possible that the actual cause or causes of the accident may not be revealed until trial.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                },
+                {
+                  "text": " But the action must be commenced within two years of when the",
+                  "styles": [
+                    "normal",
+                    "bold"
+                  ],
+                  "position": 1
+                }
+              ]
+            },
+            {
+              "block_id": "b6",
+              "block_type": "footnotes",
+              "spans": [
+                {
+                  "text": "18 Grant, para 29.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 0
+                },
+                {
+                  "text": "19 Grant, para 44.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 1
+                },
+                {
+                  "text": "20 Ibid.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 2
+                },
+                {
+                  "text": "21 Grant, para 46.",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 3
+                },
+                {
+                  "text": "22 Gordon Dunk Farms Limited v HFH Inc, 2021 ONCA 681 [Gordon].",
+                  "styles": [
+                    "normal"
+                  ],
+                  "position": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "document": {
+      "total_pages": 1,
+      "pages": [
+        {
+          "page_number": 1,
+          "blocks": []
+        }
+      ]
+    }
+  },
+  "{\n\"document\": {\n\"total_pages\": 1,\n\"pages\": [\n{\n\"page_number\": 13,\n\"blocks\": [\n{\n\"block_id\": \"b1\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"84 The exact extent of one's loss need not be known before a cause of action can be said to have accrued. Once a plaintiff knows that some damage has occurred and has identified the tortfeasor, the cause of action has accrued. Neither the extent nor the type of damage need be known. Peixeiro v. Haberman, supra, at p. 557.\",\n\"styles\": [\"normal\", \"bold\", \"underline\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b2\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"[emphasis of bolding alone original; emphasis of bolding and underlining added]\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b3\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"33. The requisite knowledge for discoverability is not one of certainty. The claimant does not need to know the extent of its claim, the precise cause of injury, or even a \u201cthorough understanding\u201d of the facts underlying the cause of action. The claimant only needs to know that some damage has occurred and that the defendant is to blame for the two-year limitation clock to start.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b4\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"34. Courts have further held that knowledge of the solicitor is imputed to the client, such that the day a party\u2019s solicitor knows of or ought to have discovered a potential claim is the day the limitations clock begins to run.25\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b5\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"35. Once the date of discoverability is established, the LAA provides that the burden of proof shifts to the claimant to show that they filed their claim within the two-year limitation period, as follows:\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b6\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"9 (1) A claimant has the burden of proving that a claim was brought within the limitation period established by clause 8(1)(a).\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b7\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"(2) A defendant has the burden of proving that a claim was not brought within the limitation period established by clause 8(1)(b).\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b8\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"36. Therefore, when a summary judgment motion is brought on the basis of the expired limitation period, it is the claimant who bears the burden of proving that they filed their claim within the limitation period, which is supported by both case law and s. 9(1) of the LAA.26 If the claimant cannot prove that the limitation had not expired by the time the claim was filed, then there is no real chance of success and summary judgment should be issued in favour of the moving party.27\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b9\",\n\"block_type\": \"footnotes\",\n\"spans\": [\n{\n\"text\": \"25 Conrad v Arichat Metal Fabrication Ltd, 2022 NSSC 278, paras 36-38 [Conrad].\",\n\"styles\": [\"normal\"],\n\"position\": 0\n},\n{\n\"text\": \"26 Halef v 3104457 US Investments Inc, 2023 NSSC 65, para 35 [Halef].\",\n\"styles\": [\"normal\"],\n\"position\": 1\n},\n{\n\"text\": \"27 Halef, para 36.\",\n\"styles\": [\"normal\"],\n\"position\": 2\n}\n]\n}\n]\n}\n]\n}\n}An error has occurred.\nError code: ContentFiltered\nConversation Id: II0VZ7w2xas22T6T7mrzo7-as\nTime (UTC): 2026-03-09T10:34:53.894Z.",
+  {
+    "document": {
+      "total_pages": 1,
+      "pages": [
+        {
+          "page_number": 1,
+          "blocks": []
+        }
+      ]
+    }
+  },
+  "An error has occurred.\nError code: ContentFiltered\nConversation Id: JaYNEmej3jfJOzRMm0tYAH-as\nTime (UTC): 2026-03-09T10:37:56.661Z.{\n\"document\": {\n\"total_pages\": 1,\n\"pages\": [\n{\n\"page_number\": 1,\n\"blocks\": [\n{\n\"block_id\": \"b1\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"part of Arichat Metal for damages incurred by 176 NSL on a joint and several basis.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b2\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"40. At the very least, this information ought to have triggered the exercise of reasonable due diligence on the part of the applicants to investigate whether 176 NSL had transferred any of its assets to Arichat Metal. In fact, that is precisely what the applicants did, which can be seen from the 2016 Email.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b3\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"41. The 2016 Email was sent on December 20, 2016 from Shelley Wood, former counsel to the applicants, to Scott Johnson, the applicants\u2019 insurance adjuster who was working with Ms. Wood with respect to the 2010 Proceeding. The email was sent with a \u201cre-line\u201d of \u201cAFL Tank \u2013 Some thoughts\u201d. Under the subheading \u201cChances of Recovery\u201d, the unredacted text of the 2016 Email is, as follows:\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b4\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"It's clear from the information on the NS Registry of Joint Stocks that AFL is not operating as AMF and that Greg Boucher does not appear to be involved. He did reference this at the discovery that he was now involved with a partner Mr. John Boudreau. Because these are private companies, we have no visibility into ownership structure, assets or liabilities. We are searching the public registries for any information we can find about AFL\u2019s assets and liabilities. Boucher and AFL being judgment proof would certainly explain his very cavalier attitude to this litigation and staunch refusal to participate in any ADR including a judicial settlement conference.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b5\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"42. This email arises in the context of the 2010 Proceeding, in which these same applicants were suing 176 NSL for the same damages they now seek against the AMF Respondents in the proceeding filed on February 7, 2020. On December 20, 2016, the applicants\u2019 then-counsel, Ms. Wood, was suggesting to her client and the applicants\u2019 insurance adjuster, Scott Johnson, that the defendant company in the 2010 Proceeding may be \u201cjudgment proof\u201d. Ms. Wood indicated that she was investigating the link between 176 NSL and Arichat Metal (in that email referred to respectively as \u201cAFL\u201d and \u201cAMF\u201d), and knew that Mr. Boucher was no longer involved in Arichat Metal. A reasonable inference can be drawn that by suggesting 176 NSL and Mr. Boucher were \u201cjudgment proof\u201d in this context, the applicants knew or at least highly suspected that 176 NSL\u2019s assets had been transferred to the new entity, Arichat Metal. The applicants were certainly aware of the necessary material facts upon which a plausible inference could have been drawn that Arichat Metal was jointly liable for 176 NSL\u2019s damages.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n}\n]\n}\n]\n}\n}An error has occurred.\nError code: ContentFiltered\nConversation Id: JaYNEmej3jfJOzRMm0tYAH-as\nTime (UTC): 2026-03-09T10:38:28.507Z.{\n\"document\": {\n\"total_pages\": 1,\n\"pages\": [\n{\n\"page_number\": 1,\n\"blocks\": [\n{\n\"block_id\": \"b1\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"part of Arichat Metal for damages incurred by 176 NSL on a joint and several basis.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b2\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"40. At the very least, this information ought to have triggered the exercise of reasonable due diligence on the part of the applicants to investigate whether 176 NSL had transferred any of its assets to Arichat Metal. In fact, that is precisely what the applicants did, which can be seen from the 2016 Email.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b3\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"41. The 2016 Email was sent on December 20, 2016 from Shelley Wood, former counsel to the applicants, to Scott Johnson, the applicants\u2019 insurance adjuster who was working with Ms. Wood with respect to the 2010 Proceeding. The email was sent with a \u201cre-line\u201d of \u201cAFL Tank \u2013 Some thoughts\u201d. Under the subheading \u201cChances of Recovery\u201d, the unredacted text of the 2016 Email is, as follows:\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b4\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"It's clear from the information on the NS Registry of Joint Stocks that AFL is not operating as AMF and that Greg Boucher does not appear to be involved. He did reference this at the discovery that he was now involved with a partner Mr. John Boudreau. Because these are private companies, we have no visibility into ownership structure, assets or liabilities. We are searching the public registries for any information we can find about AFL\u2019s assets and liabilities. Boucher and AFL being judgment proof would certainly explain his very cavalier attitude to this litigation and staunch refusal to participate in any ADR including a judicial settlement conference.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b5\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"42. This email arises in the context of the 2010 Proceeding, in which these same applicants were suing 176 NSL for the same damages they now seek against the AMF Respondents in the proceeding filed on February 7, 2020. On December 20, 2016, the applicants\u2019 then-counsel, Ms. Wood, was suggesting to her client and the applicants\u2019 insurance adjuster, Scott Johnson, that the defendant company in the 2010 Proceeding may be \u201cjudgment proof\u201d. Ms. Wood indicated that she was investigating the link between 176 NSL and Arichat Metal (in that email referred to respectively as \u201cAFL\u201d and \u201cAMF\u201d), and knew that Mr. Boucher was no longer involved in Arichat Metal. A reasonable inference can be drawn that by suggesting 176 NSL and Mr. Boucher were \u201cjudgment proof\u201d in this context, the applicants knew or at least highly suspected that 176 NSL\u2019s assets had been transferred to the new entity, Arichat Metal. The applicants were certainly aware of the necessary material facts upon which a plausible inference could have been drawn that Arichat Metal was jointly liable for 176 NSL\u2019s damages.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n}\n]\n}\n]\n}\n}An error has occurred.\nError code: ContentFiltered\nConversation Id: JaYNEmej3jfJOzRMm0tYAH-as\nTime (UTC): 2026-03-09T10:38:58.181Z.{\n\"document\": {\n\"total_pages\": 1,\n\"pages\": [\n{\n\"page_number\": 1,\n\"blocks\": [\n{\n\"block_id\": \"b1\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"part of Arichat Metal for damages incurred by 176 NSL on a joint and several basis.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b2\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"40. At the very least, this information ought to have triggered the exercise of reasonable due diligence on the part of the applicants to investigate whether 176 NSL had transferred any of its assets to Arichat Metal. In fact, that is precisely what the applicants did, which can be seen from the 2016 Email.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b3\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"41. The 2016 Email was sent on December 20, 2016 from Shelley Wood, former counsel to the applicants, to Scott Johnson, the applicants\u2019 insurance adjuster who was working with Ms. Wood with respect to the 2010 Proceeding. The email was sent with a \u201cre-line\u201d of \u201cAFL Tank \u2013 Some thoughts\u201d. Under the subheading \u201cChances of Recovery\u201d, the unredacted text of the 2016 Email is, as follows:\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b4\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"It's clear from the information on the NS Registry of Joint Stocks that AFL is not operating as AMF and that Greg Boucher does not appear to be involved. He did reference this at the discovery that he was now involved with a partner Mr. John Boudreau. Because these are private companies, we have no visibility into ownership structure, assets or liabilities. We are searching the public registries for any information we can find about AFL\u2019s assets and liabilities. Boucher and AFL being judgment proof would certainly explain his very cavalier attitude to this litigation and staunch refusal to participate in any ADR including a judicial settlement conference.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b5\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"42. This email arises in the context of the 2010 Proceeding, in which these same applicants were suing 176 NSL for the same damages they now seek against the AMF Respondents in the proceeding filed on February 7, 2020. On December 20, 2016, the applicants\u2019 then-counsel, Ms. Wood, was suggesting to her client and the applicants\u2019 insurance adjuster, Scott Johnson, that the defendant company in the 2010 Proceeding may be \u201cjudgment proof\u201d. Ms. Wood indicated that she was investigating the link between 176 NSL and Arichat Metal (in that email referred to respectively as \u201cAFL\u201d and \u201cAMF\u201d), and knew that Mr. Boucher was no longer involved in Arichat Metal. A reasonable inference can be drawn that by suggesting 176 NSL and Mr. Boucher were \u201cjudgment proof\u201d in this context, the applicants knew or at least highly suspected that 176 NSL\u2019s assets had been transferred to the new entity, Arichat Metal. The applicants were certainly aware of the necessary material facts upon which a plausible inference could have been drawn that Arichat Metal was jointly liable for 176 NSL\u2019s damages.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n}\n]\n}\n]\n}\n}An error has occurred.\nError code: ContentFiltered\nConversation Id: JaYNEmej3jfJOzRMm0tYAH-as\nTime (UTC): 2026-03-09T10:39:27.053Z.{\n\"document\": {\n\"total_pages\": 1,\n\"pages\": [\n{\n\"page_number\": 1,\n\"blocks\": [\n{\n\"block_id\": \"b1\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"part of Arichat Metal for damages incurred by 176 NSL on a joint and several basis.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b2\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"40. At the very least, this information ought to have triggered the exercise of reasonable due diligence on the part of the applicants to investigate whether 176 NSL had transferred any of its assets to Arichat Metal. In fact, that is precisely what the applicants did, which can be seen from the 2016 Email.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b3\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"41. The 2016 Email was sent on December 20, 2016 from Shelley Wood, former counsel to the applicants, to Scott Johnson, the applicants\u2019 insurance adjuster who was working with Ms. Wood with respect to the 2010 Proceeding. The email was sent with a \u201cre-line\u201d of \u201cAFL Tank \u2013 Some thoughts\u201d. Under the subheading \u201cChances of Recovery\u201d, the unredacted text of the 2016 Email is, as follows:\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b4\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"It's clear from the information on the NS Registry of Joint Stocks that AFL is not operating as AMF and that Greg Boucher does not appear to be involved. He did reference this at the discovery that he was now involved with a partner Mr. John Boudreau. Because these are private companies, we have no visibility into ownership structure, assets or liabilities. We are searching the public registries for any information we can find about AFL\u2019s assets and liabilities. Boucher and AFL being judgment proof would certainly explain his very cavalier attitude to this litigation and staunch refusal to participate in any ADR including a judicial settlement conference.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b5\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"42. This email arises in the context of the 2010 Proceeding, in which these same applicants were suing 176 NSL for the same damages they now seek against the AMF Respondents in the proceeding filed on February 7, 2020. On December 20, 2016, the applicants\u2019 then-counsel, Ms. Wood, was suggesting to her client and the applicants\u2019 insurance adjuster, Scott Johnson, that the defendant company in the 2010 Proceeding may be \u201cjudgment proof\u201d. Ms. Wood indicated that she was investigating the link between 176 NSL and Arichat Metal (in that email referred to respectively as \u201cAFL\u201d and \u201cAMF\u201d), and knew that Mr. Boucher was no longer involved in Arichat Metal. A reasonable inference can be drawn that by suggesting 176 NSL and Mr. Boucher were \u201cjudgment proof\u201d in this context, the applicants knew or at least highly suspected that 176 NSL\u2019s assets had been transferred to the new entity, Arichat Metal. The applicants were certainly aware of the necessary material facts upon which a plausible inference could have been drawn that Arichat Metal was jointly liable for 176 NSL\u2019s damages.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n}\n]\n}\n]\n}\n}An error has occurred.\nError code: ContentFiltered\nConversation Id: JaYNEmej3jfJOzRMm0tYAH-as\nTime (UTC): 2026-03-09T10:40:07.011Z.{\n\"document\": {\n\"total_pages\": 1,\n\"pages\": [\n{\n\"page_number\": 1,\n\"blocks\": [\n{\n\"block_id\": \"b1\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"part of Arichat Metal for damages incurred by 176 NSL on a joint and several basis.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b2\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"40. At the very least, this information ought to have triggered the exercise of reasonable due diligence on the part of the applicants to investigate whether 176 NSL had transferred any of its assets to Arichat Metal. In fact, that is precisely what the applicants did, which can be seen from the 2016 Email.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b3\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"41. The 2016 Email was sent on December 20, 2016 from Shelley Wood, former counsel to the applicants, to Scott Johnson, the applicants\u2019 insurance adjuster who was working with Ms. Wood with respect to the 2010 Proceeding. The email was sent with a \u201cre-line\u201d of \u201cAFL Tank \u2013 Some thoughts\u201d. Under the subheading \u201cChances of Recovery\u201d, the unredacted text of the 2016 Email is, as follows:\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b4\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"It's clear from the information on the NS Registry of Joint Stocks that AFL is not operating as AMF and that Greg Boucher does not appear to be involved. He did reference this at the discovery that he was now involved with a partner Mr. John Boudreau. Because these are private companies, we have no visibility into ownership structure, assets or liabilities. We are searching the public registries for any information we can find about AFL\u2019s assets and liabilities. Boucher and AFL being judgment proof would certainly explain his very cavalier attitude to this litigation and staunch refusal to participate in any ADR including a judicial settlement conference.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b5\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"42. This email arises in the context of the 2010 Proceeding, in which these same applicants were suing 176 NSL for the same damages they now seek against the AMF Respondents in the proceeding filed on February 7, 2020. On December 20, 2016, the applicants\u2019 then-counsel, Ms. Wood, was suggesting to her client and the applicants\u2019 insurance adjuster, Scott Johnson, that the defendant company in the 2010 Proceeding may be \u201cjudgment proof\u201d. Ms. Wood indicated that she was investigating the link between 176 NSL and Arichat Metal (in that email referred to respectively as \u201cAFL\u201d and \u201cAMF\u201d), and knew that Mr. Boucher was no longer involved in Arichat Metal. A reasonable inference can be drawn that by suggesting 176 NSL and Mr. Boucher were \u201cjudgment proof\u201d in this context, the applicants knew or at least highly suspected that 176 NSL\u2019s assets had been transferred to the new entity, Arichat Metal. The applicants were certainly aware of the necessary material facts upon which a plausible inference could have been drawn that Arichat Metal was jointly liable for 176 NSL\u2019s damages.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n}\n]\n}\n]\n}\n}An error has occurred.\nError code: ContentFiltered\nConversation Id: JaYNEmej3jfJOzRMm0tYAH-as\nTime (UTC): 2026-03-09T10:40:44.799Z.{\n\"document\": {\n\"total_pages\": 1,\n\"pages\": [\n{\n\"page_number\": 1,\n\"blocks\": [\n{\n\"block_id\": \"b1\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"part of Arichat Metal for damages incurred by 176 NSL on a joint and several basis.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b2\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"40. At the very least, this information ought to have triggered the exercise of reasonable due diligence on the part of the applicants to investigate whether 176 NSL had transferred any of its assets to Arichat Metal. In fact, that is precisely what the applicants did, which can be seen from the 2016 Email.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b3\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"41. The 2016 Email was sent on December 20, 2016 from Shelley Wood, former counsel to the applicants, to Scott Johnson, the applicants\u2019 insurance adjuster who was working with Ms. Wood with respect to the 2010 Proceeding. The email was sent with a \u201cre-line\u201d of \u201cAFL Tank \u2013 Some thoughts\u201d. Under the subheading \u201cChances of Recovery\u201d, the unredacted text of the 2016 Email is, as follows:\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b4\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"It's clear from the information on the NS Registry of Joint Stocks that AFL is not operating as AMF and that Greg Boucher does not appear to be involved. He did reference this at the discovery that he was now involved with a partner Mr. John Boudreau. Because these are private companies, we have no visibility into ownership structure, assets or liabilities. We are searching the public registries for any information we can find about AFL\u2019s assets and liabilities. Boucher and AFL being judgment proof would certainly explain his very cavalier attitude to this litigation and staunch refusal to participate in any ADR including a judicial settlement conference.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n},\n{\n\"block_id\": \"b5\",\n\"block_type\": \"paragraph\",\n\"spans\": [\n{\n\"text\": \"42. This email arises in the context of the 2010 Proceeding, in which these same applicants were suing 176 NSL for the same damages they now seek against the AMF Respondents in the proceeding filed on February 7, 2020. On December 20, 2016, the applicants\u2019 then-counsel, Ms. Wood, was suggesting to her client and the applicants\u2019 insurance adjuster, Scott Johnson, that the defendant company in the 2010 Proceeding may be \u201cjudgment proof\u201d. Ms. Wood indicated that she was investigating the link between 176 NSL and Arichat Metal (in that email referred to respectively as \u201cAFL\u201d and \u201cAMF\u201d), and knew that Mr. Boucher was no longer involved in Arichat Metal. A reasonable inference can be drawn that by suggesting 176 NSL and Mr. Boucher were \u201cjudgment proof\u201d in this context, the applicants knew or at least highly suspected that 176 NSL\u2019s assets had been transferred to the new entity, Arichat Metal. The applicants were certainly aware of the necessary material facts upon which a plausible inference could have been drawn that Arichat Metal was jointly liable for 176 NSL\u2019s damages.\",\n\"styles\": [\"normal\"],\n\"position\": 0\n}\n]\n}\n]\n}\n]\n}\n}An error has occurred.\nError code: ContentFiltered\nConversation Id: JaYNEmej3jfJOzRMm0tYAH-as\nTime (UTC): 2026-03-09T10:41:11.594Z.",
+  {
+    "document": {
+      "total_pages": 1,
+      "pages": [
+        {
+          "page_number": 1,
+          "blocks": []
+        }
+      ]
+    }
+  },
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  ""
+]

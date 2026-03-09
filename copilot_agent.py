@@ -23,7 +23,11 @@ MAX_CONTINUE = 20
 FINISHED = False
 first_response_received = False
 
+
 OUTPUT_ROOT = r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output"
+processing_time_folder = r"D:\Projects\TPCPP\Processing Time"
+
+os.makedirs(processing_time_folder, exist_ok=True)
 
 def start_conversation():
     global conversation_id
@@ -178,9 +182,9 @@ os.makedirs(OUTPUT_ROOT, exist_ok=True)
 username = "kntrcnd"
 repo = "tpcpp_copilot_agent"
 branch = "main"
-folder_path = "pdf/test"
+folder_path_base = "pdf/base"
 
-api_url = f"https://api.github.com/repos/{username}/{repo}/contents/{folder_path}?ref={branch}"
+api_url = f"https://api.github.com/repos/{username}/{repo}/contents/{folder_path_base}?ref={branch}"
 response = requests.get(api_url)
 response.raise_for_status()
 files = response.json()
@@ -191,8 +195,11 @@ print(f"Found {len(pdf_files)} PDF(s) to process.")
 
 for f in pdf_files:
     pdf_name = os.path.splitext(f["name"])[0]
-    pdf_url = f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{folder_path}/{quote(f['name'])}"
+    pdf_url = f"https://raw.githubusercontent.com/{username}/{repo}/{branch}/{folder_path_base}/{quote(f['name'])}"
     print(f"\nSending PDF: {pdf_url}")
+
+    # ---------------- Start timer ----------------
+    current_time = datetime.now()
 
     response_buffer = ""
     FINISHED = False
@@ -201,7 +208,6 @@ for f in pdf_files:
     first_response_received = False
 
     start_conversation()
-
     send_message(
         "Extract this PDF into structured JSON. Return ONLY JSON.",
         pdf_url
@@ -213,3 +219,32 @@ for f in pdf_files:
         time.sleep(2)
 
     save_response(pdf_name)
+
+    # ---------------- End timer ----------------
+    end_time = datetime.now()
+    elapsed_seconds = (end_time - current_time).total_seconds()
+    elapsed_minutes = elapsed_seconds / 60
+
+    # --- Print timing info to console ---
+    print("\n--- Processing finished ---")
+    print(f"Started: {current_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Ended:   {end_time.strftime('%Y-%m-%d %H:%M:%S')}")
+    print(f"Elapsed Time: {elapsed_minutes:.2f} minutes ({elapsed_seconds:.0f} seconds)")
+
+    # --- Save processing time JSON ---
+    timer_data = {
+        "pdf_name": pdf_name,
+        "started_at": current_time.strftime('%Y-%m-%d %H:%M:%S'),
+        "ended_at": end_time.strftime('%Y-%m-%d %H:%M:%S'),
+        "elapsed_minutes": round(elapsed_minutes, 2),
+        "elapsed_seconds": int(elapsed_seconds)
+    }
+
+    timestamp_str = end_time.strftime("%Y-%m-%d_%H-%M-%S")
+    timer_file_name = f"{pdf_name}_processing_time_{timestamp_str}.json"
+    timer_file_path = os.path.join(processing_time_folder, timer_file_name)
+
+    with open(timer_file_path, "w", encoding="utf-8") as f_timer:
+        json.dump(timer_data, f_timer, indent=2)
+
+    print(f"Processing time JSON saved -> {timer_file_path}")
