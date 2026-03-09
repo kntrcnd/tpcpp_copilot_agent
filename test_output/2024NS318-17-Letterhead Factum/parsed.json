@@ -1,0 +1,732 @@
+{
+"document": {
+"total_pages": 19,
+"pages": [
+{
+"page_number": 1,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "heading",
+"level": 1,
+"spans": [
+{
+"text": "Letterhead Factum",
+"styles": ["normal", "bold", "underline"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 2,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "address_block",
+"alignment": "left",
+"lines": [
+{
+"line_id": "l1",
+"spans": [
+{
+"text": "July 11, 2023",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"line_id": "l2",
+"spans": [
+{
+"text": "THE HONOURABLE JUSTICE JEFFREY R. HU",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"line_id": "l3",
+"spans": [
+{
+"text": "Supreme Court of Nova Scotia",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"line_id": "l4",
+"spans": [
+{
+"text": "The Law Courts Building",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"line_id": "l5",
+"spans": [
+{
+"text": "1815 Upper Water St.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"line_id": "l6",
+"spans": [
+{
+"text": "Halifax, NS  B3J 1S7",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"block_id": "b2",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "MY LORD:",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b3",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "Re: Leslie J. Conrad, Edwin Conrad, Dan Merzetti, and Sherri Merzetti v. Arichat Metal Fabrication Ltd., and Gregory Boucher, and John Boudreau; Hfx No. 496393",
+"styles": ["normal", "italic"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b4",
+"block_type": "heading",
+"level": 2,
+"spans": [
+{
+"text": "INTRODUCTION",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b5",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "1. This application in chambers is scheduled before Your Lordship on July 26, 2023 at 2:00 p.m., on a motion for summary judgment on the evidence dismissing the proceeding pursuant to the Limitation of Actions Act.1 Micaela Sheppard and I represent the respondents, Arichat Metal Fabrication Ltd. (“Arichat Metal”) and John Boudreau, the moving parties of the motion (together, “AMF Respondents”). The applicants are represented by Michelle Kelly and Lisa Delaney. The co-respondent, Gregory Boucher, and the third party, 1766134 Nova Scotia Limited (“176 NSL”), are represented by Adam Harris.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b6",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "2. The AMF Respondents had filed a motion for summary judgment on the evidence on April 1, 2021 (amended April 8, 2021; further amended May 24, 2023). In support, the AMF Respondents filed a brief on April 8, 2021 and the applicants filed a brief on May 20, 2021. Since that time, however, the parties have dealt with a motion for production and discovery, which resulted in the production of crucial new evidence to the AMF Respondents which we now rely on in support of the present motion.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 3,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "3. Also, since our first brief filed on April 8, 2021, the Supreme Court of Canada has issued new guidance with respect to the law upon which this motion is brought, in particular the “discoverability principle”, in Grant Thornton LLP v New Brunswick, 2021 SCC 31 (“Grant”).",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b2",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "4. As well, it became clear after the 2021 filings that we as counsel for the AMF Respondents did not adequately appreciate the legal issue and applicable law in our prior submissions, and that revised briefing was necessary for the court to be fully apprised of the analysis which it is tasked to undertake.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b3",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "5. Therefore, counsel has agreed that supplemental briefing is appropriate in this motion. This brief is intended to supplant fully our brief filed April 8, 2021, and the court need not refer to that brief. If any party wishes to file supplemental briefing in response to this brief, then our clients consent to such filing.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b4",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "6. The parties also agreed to supplemental affidavits in this motion, and we are filing an affidavit attaching an email between the applicants’ former legal counsel and their insurance adjuster as supplemental evidence on this motion.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b5",
+"block_type": "heading",
+"level": 2,
+"spans": [
+{
+"text": "PROCEDURAL BACKGROUND",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b6",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "7. The applicants in this proceeding previously filed a notice of action on June 29, 2010 against 176 NSL, then-named “AFL Tank Manufacturing Limited”, in Hfx No. 331744 (“2010 Action”). In the 2010 Action, the applicants claimed losses in negligence arising from the leakage of oil from oil tanks which had been manufactured by 176 NSL. That proceeding did not name the respondents to this proceeding, Arichat Metal, Mr. Boudreau, and Mr. Boucher, nor did it name 3236552 Nova Scotia Limited (“323 NSL”).",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b7",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "8. 176 NSL filed a notice of withdrawal of its defence and consent to judgment on February 13, 2018. On or around January 24, 2019, Justice Timothy Gabriel assessed the applicants’ damages and awarded the applicants judgment against the defendant AFL Tank Manufacturing Ltd, at that time known as 176 NSL, in the 2010 Proceeding in the amount of $754,262.63. However, the applicants did not collect judgment from 176 NSL.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 4,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "9. Then, on February 7th, 2020, the applicants filed the present application in court against Arichat Metal, Mr. Boudreau, and Mr. Boucher, alleging that the respondents are liable on a joint and several basis for the judgment issued in the 2010 Proceeding against 176 NSL. The applicants further allege that an asset purchase-and-sale transaction between 176 NSL and Arichat Metal was a sham.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b2",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "10. In 2021, the respondents filed a notice of motion for summary judgment on the evidence, alleging that the applicants’ claim against the respondents is out of time pursuant to the Limitation of Action Act. The applicants filed the affidavit of Scott Johnson, sworn on May 20, 2021 (“Johnson Affidavit”), in support of their contest of the respondents’ motion for summary judgment. Mr. Johnson, a national property claim consultant with Allstate Insurance Company of Canada (“Allstate”), is the insurance adjuster for the applicants. Allstate became subrogated to the rights of the applicants in the 2010 Proceeding.2",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b3",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "11. Upon receiving the Johnson Affidavit, the AMF Respondents determined that his cross-examination at the motion for summary judgment would be necessary. This was not possible because the hearing had been scheduled to be heard via videoconference due to the pandemic, and because of the court’s protocols at the time. As a result, the summary judgment motion was adjourned without date, although an adjournment would have been needed anyway due to the need for production which arose from the Johnson Affidavit.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b4",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "12. The respondents filed a motion for production, and also for discovery of legal counsel witnesses, on November 16, 2021, arguing that paragraph 16 of the Johnson Affidavit constituted waiver of solicitor/client privilege over the conversation between Mr. Johnson and the former counsel for the applicants, Shelley Wood. In particular, the respondents sought production of an email sent from Ms. Wood to Mr. Johnson on December 20, 2016 (“2016 Email”), in which the new corporate entity, Arichat Metal, was discussed.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b5",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "13. Justice Glen G. McDougall heard the motion for production and discovery on March 15, 2022. By written decision on October 14, 2022, McDougall J. allowed the production of the 2016 Email, with redactions, to the respondents and third party, agreeing that privilege had been waived over that communication. Justice McDougall did not grant the motion for discovery of legal counsel witnesses.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 5,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "14. The AMF Respondents amended their motion for summary judgment on the evidence against the applicants on May 26, 2023, and now file the affidavit of Brittany Durnford, sworn July 10, 2023, which attaches the 2016 Email, in support.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b2",
+"block_type": "heading",
+"level": 2,
+"spans": [
+{
+"text": "FACTS",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b3",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "15. As early as 2006, Mr. Boucher and Mr. Boudreau began discussing and negotiating the sale of 176 NSL’s assets. This transaction transpired over the next several years, concluding in or around November 27, 2015, when 176 NSL received payment of $386,213.60.3 The applicants in this proceeding started an action against 176 NSL, then AFL Tank Manufacturing Limited, on June 29, 2010.4 On December 20, 2010, Mr. Boudreau incorporated a new entity, then known as 3250450 Nova Scotia Limited (“325 NSL”), and eventually carrying on business as Arichat Metal.5 On December 31, 2010, 176 NSL changed its name from “AFL Tank Manufacturing Limited” to its present name of 1766134 Nova Scotia Limited.6 This meant that the party defending the legal action was now 1766134 Nova Scotia Limited, although the court record was never updated to reflect this. On the same date, 325 NSL changed its name to AFL Tank Manufacturing Limited.7 These changes resulted from an asset purchase-and-sale between the two companies, as well as another company of Mr. Boudreau’s, 323 NSL.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b4",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "16. The respondents say that these actions, including assigning the business name of AFL Tank Manufacturing to 325 NSL, were all legitimately performed pursuant to an ordinary asset purchase-and-sale transaction for fair market value, exchanging the assets of 176 NSL for cash and leaving value in 176 NSL for any future judgment against it in lieu of the transferred assets. The transaction was not surreptitious. The parties made all necessary public registrations with the Registry of Joint Stock Companies.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 6,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "17. Meanwhile, the 2010 Action against 176 NSL continued through disclosure and discovery examinations. The applicants discovered Mr. Boucher on April 9, 2013. Mr. Boucher deposed that at that time, he was no longer the president of “AFL”, and that Mr. Boudreau, his business partner, was.10",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b2",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "18. On October 22, 2015, the applicants received correspondence from Ralph Ripley, counsel for 325 NSL, which was carrying on business as AFL Tank Manufacturing at the time.11 Mr. Ripley’s letter discussed the incorporation of 325 NSL in 2010 and the fact that 176 NSL no longer bore the name “AFL Tank Manufacturing Limited” but that 325 NSL then did. This correspondence attached printouts of the corporate profiles for 325 NSL and 176 NSL. At the time, both Mr. Boudreau and Mr. Boucher were directors and officers of 325 NSL.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b3",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "19. The applicants screen-captured the corporate profile of Arichat Metal on December 16, 2016 from the Registry of Joint Stock Companies website.12 This profile indicated that the company formerly known as 3250450 Nova Scotia Limited changed its name a second time from AFL Tank Manufacturing Limited to Arichat Metal Fabrication Limited. The 2016 corporate profile indicated that Mr. Boudreau was its sole director and officer, having removed Mr. Boucher on or around December 2, 2015.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b4",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "20. On December 20, 2016, Ms. Wood emailed Scott Johnson, the insurance adjuster for the applicants.13 In that email, Ms. Wood informed Mr. Johnson that the applicants had perused the Registry of Joint Stock Companies and that they were “searching the public registries for any information” regarding AFL/176 NSL’s assets and liabilities. She further suggested that Mr. Boucher and AFL/176 NSL was “judgment proof”.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b5",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "21. On April 18, 2018, Ms. Wood and Mr. Johnson spoke on the phone whereby Ms. Wood advised Mr. Johnson that Arichat Metal had, in fact, purchased the assets of 176 NSL.14 She further advised him that the company formerly known as AFL, and now called 176 NSL, may not have any assets on which to recover, while Arichat Metal was a going concern.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 7,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "22. At no point in the 2010 Action did the applicants amend the style of cause to name 323 NSL, 325 NSL, John Boudreau, or Arichat Metal as parties. The applicants did not subpoena nor otherwise seek disclosure from any of these entities or individuals. The applicants did not recall Mr. Boucher for discovery or otherwise require him to disclose evidence pertaining to what if any disposition 176 NSL made of the proceeds of sale of its assets, or to whom.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b2",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "23. In support of the 2010 Action, the applicants had filed the affidavit of Jeffrey Waugh, then-articled clerk for Stewart McKelvey, which affidavit was sworn on April 13, 2018. The Waugh Affidavit and some of its exhibits were incorporated into the present proceeding by virtue of the affidavit of Lindsay Corey, sworn on April 1, 2021; the entire Waugh Affidavit was incorporated into this proceeding via the Johnson Affidavit, sworn April 13, 2021.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b3",
+"block_type": "heading",
+"level": 2,
+"spans": [
+{
+"text": "ISSUES",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b4",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "24. Should the court dismiss the application summarily on the grounds that the applicants’ claim is barred by the Limitation of Actions Act?",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b5",
+"block_type": "heading",
+"level": 2,
+"spans": [
+{
+"text": "LAW & ARGUMENT",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b6",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "25. Summary judgment on the evidence is governed by Rule 13 of the Civil Procedure Rules. In particular, R. 13.04 says, as follows:",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b7",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "13.04 (1) A judge who is satisfied on both of the following must grant summary judgment on a claim or a defence in an action:",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 8,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "list",
+"items": [
+{
+"level": 1,
+"spans": [
+{
+"text": "(a) there is no genuine issue of material fact, whether on its own or mixed with a question of law, for trial of the claim or defence;",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"level": 1,
+"spans": [
+{
+"text": "(b) the claim or defence does not require determination of a question of law, whether on its own or mixed with a question of fact, or the claim or defence requires determination only of a question of law and the judge exercises the discretion provided in this Rule 13.04 to determine the question.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+}
+]
+},
+{
+"page_number": 9,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "(2) When the absence of a genuine issue of material fact for trial and the absence of a question of law requiring determination are established, summary judgment must be granted without distinction between a claim and a defence and without further inquiry into chances of success.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 10,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "8 (1) Unless otherwise provided in this Act, a claim may not be brought after the earlier of",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 11,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "34 A plaintiff need not know the exact act or omission by the defendant that caused the loss in order to start the limitation period running.",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 12,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "84 The exact extent of one's loss need not be known before a cause of action can be said to have accrued.",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 13,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "36. Therefore, when a summary judgment motion is brought on the basis of the expired limitation period, it is the claimant who bears the burden of proving that they filed their claim within the limitation period, which is supported by both case law and s. 9(1) of the LAA.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 14,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "heading",
+"level": 3,
+"spans": [
+{
+"text": "a) The applicants knew of or ought to have discovered their claim against the respondents by 2015 or 2016",
+"styles": ["normal", "italic"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 15,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "42. This email arises in the context of the 2010 Proceeding, in which these same applicants were suing 176 NSL for the same damages they now seek against the AMF Respondents in the proceeding filed on February 7, 2020.",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 16,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "45. In the applicants’ brief, submitted in support of this summary judgment motion prior to the adjournment in 2021, the applicants phrase the legal question at the heart of this motion as: “When did the [applicants] have sufficient knowledge [176 NSL] was judgment proof?”",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 17,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "49. The present case can be distinguished from the case of Rona Inc v Rockhard Construction Limited et al, 2020 NSSC 374 (“Rona”).",
+"styles": ["normal"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 18,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "heading",
+"level": 3,
+"spans": [
+{
+"text": "b) The applicants’ claim against the AMF Respondents is statutorily barred and summary judgment should be issued",
+"styles": ["normal", "italic"],
+"position": 0
+}
+]
+}
+]
+},
+{
+"page_number": 19,
+"blocks": [
+{
+"block_id": "b1",
+"block_type": "heading",
+"level": 2,
+"spans": [
+{
+"text": "CONCLUSION & RELIEF SOUGHT",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b2",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "55. We respectfully request that the court grant an order dismissing this application against the AMF Respondents on the basis that the limitation period was expired at the time of filing the notice of application in court.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b3",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "56. Pursuant to Justice McDougall’s direction in the motion for production and discovery, at paragraph 74 of his written decision, we submit costs of both that motion and this motion should be awarded in favour of the AMF Respondents.",
+"styles": ["normal"],
+"position": 0
+}
+]
+},
+{
+"block_id": "b4",
+"block_type": "paragraph",
+"spans": [
+{
+"text": "Matthew J.D. Moir Counsel for the respondents Arichat Metal Fabrication Ltd and John Boudreau",
+"styles": ["normal", "bold"],
+"position": 0
+}
+]
+}
+]
+}
+]
+}
+}
