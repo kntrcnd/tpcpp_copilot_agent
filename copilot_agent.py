@@ -24,10 +24,12 @@ MAX_CONTINUE = 20
 FINISHED = False
 first_response_received = False
 
-OUTPUT_ROOT = r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output"
+OUTPUT_ROOT = r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\JSON"
+OUTPUT_ROOT_1 = r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\SGML"
 processing_time_folder = r"D:\Projects\TPCPP\Processing Time"
 
 os.makedirs(OUTPUT_ROOT, exist_ok=True)
+os.makedirs(OUTPUT_ROOT_1, exist_ok=True)
 os.makedirs(processing_time_folder, exist_ok=True)
 
 # ---------------- Copilot functions ----------------
@@ -135,46 +137,137 @@ def monitor_continue():
         else:
             FINISHED = True
 
-def convert_json_to_sgml(json_file):
+def json_to_sgml(json_file, pdf_name):
+    """Convert Copilot JSON into fully structured SGML dynamically."""
+    os.makedirs(OUTPUT_ROOT_1, exist_ok=True)
+    
+    # Extract PDF ID for filenames
+    pdf_id = os.path.splitext(pdf_name)[0]
 
     with open(json_file, "r", encoding="utf-8") as f:
         data = json.load(f)
 
-    pages = data["document"]["pages"]
     sgml_lines = []
 
+    # Start PLEADING root
+    sgml_lines.append(f'<PLEADING LABEL="Pleading" TYPE="PLEADING" LANG="EN">')
+
+    # Pages
+    pages = data.get("document", {}).get("pages", [])
     for page in pages:
+        page_num = page.get("page_number", "")
+        sgml_lines.append(f"<N>{page_num}</N>")
+        sgml_lines.append(f'<GRAPHIC FILENAME="{pdf_id}P{page_num}.PDF"><LINKTEXT>Original Image of this Document (PDF)</LINKTEXT></GRAPHIC>')
+
+        # Metadata fields at page level
+        meta_fields = ["docti", "subject", "date", "caseref", "docket", "partyblock", "counselblock"]
+        for field in meta_fields:
+            value = page.get(field)
+            if value:
+                if isinstance(value, list):
+                    for v in value:
+                        sgml_lines.append(convert_meta_field(field, v))
+                else:
+                    sgml_lines.append(convert_meta_field(field, value))
+
+        # Freeform blocks
+        sgml_lines.append("<FREEFORM>")
         blocks = page.get("blocks", [])
-
         for block in blocks:
+            sgml_lines.extend(convert_block(block))
+        sgml_lines.append("</FREEFORM>")
 
-            b_type = block.get("b_type")
+    sgml_lines.append("</PLEADING>")
 
-            if "spans" in block:
-                for span in block["spans"]:
-                    text = span.get("text", "").strip()
+    # Save SGML
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    sgml_file = os.path.join(OUTPUT_ROOT_1, f"{pdf_id}_{timestamp}.sgml")
+    with open(sgml_file, "w", encoding="utf-8") as f:
+        f.write("\n".join(sgml_lines))
+    
+    print(f"SGML saved -> {sgml_file}")
 
-                    if not text:
-                        continue
 
-                    if b_type == "paragraph":
-                        sgml_lines.append(f"<P>{text}</P>")
+def convert_meta_field(field_name, value):
+    """Convert metadata to SGML tags dynamically."""
+    if field_name.lower() == "docti":
+        return f"<DOCTI>{value}</DOCTI>"
+    elif field_name.lower() == "subject":
+        return f"<SUBJECT>{value}</SUBJECT>"
+    elif field_name.lower() == "date":
+        ymd = value.get("YYYYMMDD") if isinstance(value, dict) else ""
+        label = value.get("LABEL") if isinstance(value, dict) else ""
+        text = value.get("text") if isinstance(value, dict) else str(value)
+        return f'<DATE YYYYMMDD="{ymd}" LABEL="{label}">{text}</DATE>'
+    elif field_name.lower() == "caseref":
+        # CASEREF may have multiple subfields
+        parts = []
+        if isinstance(value, dict):
+            soc = value.get("SOC")
+            cite = value.get("CITE")
+            correlat = value.get("CORRELAT")
+            parts.append(f"<SOC>{soc}</SOC>" if soc else "")
+            parts.append(f"<CITE>{cite}</CITE>" if cite else "")
+            if correlat:
+                parts.append("<CORRELAT>")
+                c_cite = correlat.get("CITE")
+                if c_cite:
+                    parts.append(f"<CITE>{c_cite}</CITE>")
+                parts.append("</CORRELAT>")
+        return f"<CASEREF>{''.join(parts)}</CASEREF>"
+    elif field_name.lower() == "docket":
+        if isinstance(value, dict):
+            label = value.get("LABEL", "")
+            text = value.get("text", "")
+            return f'<DOCKET LABEL="{label}">{text}</DOCKET>'
+        else:
+            return f"<DOCKET>{value}</DOCKET>"
+    elif field_name.lower() in ["partyblock", "counselblock"]:
+        # Simple placeholder, you can extend to parse nested parties/counsel
+        return f"<{field_name.upper()}>{json.dumps(value)}</{field_name.upper()}>"
+    else:
+        return f"<{field_name.upper()}>{value}</{field_name.upper()}>"
 
-                    elif b_type == "heading":
-                        level = block.get("level_num", 1)
-                        sgml_lines.append(f"<BLOCK{level}><TI>{text}</TI>")
 
-                    elif b_type == "list":
-                        sgml_lines.append(f"<ITEM><P>{text}</P></ITEM>")
+def convert_block(block):
+    """Recursively convert nested blocks to SGML."""
+    lines = []
+    b_type = block.get("b_type", "paragraph")
+    
+    # Get text content
+    texts = []
+    if "spans" in block:
+        texts = [s.get("text", "").strip() for s in block["spans"]]
+    elif "text" in block:
+        texts = [block["text"].strip()]
 
-    sgml_text = "\n".join(sgml_lines)
-
-    sgml_path = json_file.replace(".json", ".sgml")
-
-    with open(sgml_path, "w", encoding="utf-8") as f:
-        f.write(sgml_text)
-
-    print(f"SGML saved -> {sgml_path}")
+    # Determine block level for nested headings
+    level = block.get("level_num", 1)
+    
+    if b_type.lower() == "paragraph":
+        for t in texts:
+            if t:
+                lines.append(f"<P>{t}</P>")
+    elif b_type.lower() == "heading":
+        for t in texts:
+            if t:
+                lines.append(f"<BLOCK{level}><TI>{t}</TI>")
+                # Handle nested children recursively
+                children = block.get("children", [])
+                for child in children:
+                    lines.extend(convert_block(child))
+                lines.append(f"</BLOCK{level}>")
+    elif b_type.lower() == "list":
+        for t in texts:
+            if t:
+                lines.append(f"<ITEM><P>{t}</P></ITEM>")
+    
+    # Recursively handle children if not heading
+    if b_type.lower() != "heading":
+        for child in block.get("children", []):
+            lines.extend(convert_block(child))
+    
+    return lines
 
 # ---------------- GitHub PDF fetch ----------------
 username = "kntrcnd"
@@ -275,7 +368,7 @@ for f in pdf_files:
 
     print(f"\nCompiled JSON saved -> {output_file}")
 
-    convert_json_to_sgml(output_file)
+    convert_json_to_sgml(output_file, pdf_name)
 
     # ---------------- End timer ----------------
     end_time = datetime.now()
@@ -304,4 +397,4 @@ for f in pdf_files:
     with open(timer_file_path, "w", encoding="utf-8") as f_timer:
         json.dump(timer_data, f_timer, indent=2)
 
-    print(f"Processing time JSON saved -> {timer_file_path}")
+    print(f"Processing time JSON saved...")
