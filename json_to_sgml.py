@@ -7,75 +7,12 @@ import html
 # CONFIG
 # ------------------------------------------------------------
 
-INPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\JSON\2024NS318-17-Letterhead Factum\2024NS318-17-Letterhead Factum_compiled_2026-03-09_19-34-07.json")
+INPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\JSON\2024NS318-17-Letterhead Factum\2024NS318-17-Letterhead Factum_compiled_2026-03-10_12-19-36.json")
 OUTPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\SGML\script\output.sgml")
 
 # ------------------------------------------------------------
-# STEP 1 — COMPILE CONCATENATED JSON OBJECTS
+# UTILS
 # ------------------------------------------------------------
-
-def compile_json_stream(raw_text: str) -> dict:
-    """Compiles concatenated JSON objects and flattens all blocks into a single list."""
-    decoder = json.JSONDecoder()
-    idx = 0
-    length = len(raw_text)
-    all_blocks = []
-
-    while idx < length:
-        while idx < length and raw_text[idx].isspace():
-            idx += 1
-        if idx >= length:
-            break
-
-        obj, next_idx = decoder.raw_decode(raw_text, idx)
-        idx = next_idx
-
-        pages = obj.get("pages", [])
-        if not isinstance(pages, list):
-            raise ValueError("Invalid structure: 'pages' must be a list.")
-
-        for page in pages:
-            blocks = page.get("blocks", [])
-            if not isinstance(blocks, list):
-                raise ValueError("Invalid structure: 'blocks' must be a list.")
-
-            # Normalize blocks to always have "spans"
-            for block in blocks:
-                if "text" in block and "spans" not in block:
-                    block["spans"] = [{"text": block["text"]}]
-                if block.get("block_type") == "list" and "items" not in block:
-                    # fallback: treat spans as list items
-                    items = []
-                    for span in block.get("spans", []):
-                        if "text" in span:
-                            items.append({"text": span["text"]})
-                    block["items"] = items
-                all_blocks.append(block)
-
-    return {"blocks": all_blocks}
-
-# ------------------------------------------------------------
-# TAGGING RULES
-# ------------------------------------------------------------
-
-def tag_text(block_type: str, text: str) -> str:
-    """Maps block_type to SGML tag. Detects 4-digit year headings."""
-    if not text:
-        return ""
-    stripped = text.strip()
-
-    if block_type == "heading":
-        if re.fullmatch(r"\d{4}", stripped):
-            return f"<DATE>{stripped}</DATE>"
-        return f"<TI>{stripped}</TI>"
-
-    if block_type == "paragraph":
-        return f"<P>{stripped}</P>"
-
-    if block_type == "list":
-        return f"<ITEM><P>{stripped}</P></ITEM>"
-
-    return ""
 
 def escape_text(text: str) -> str:
     """Escapes text for SGML-safe output."""
@@ -84,6 +21,50 @@ def escape_text(text: str) -> str:
     escaped = html.escape(text, quote=False)
     escaped = escaped.encode("ascii", "xmlcharrefreplace").decode()
     return escaped
+
+# ------------------------------------------------------------
+# STEP 1 — COMPILE JSON STREAM
+# ------------------------------------------------------------
+
+def compile_json_stream(raw_text: str) -> dict:
+    obj = json.loads(raw_text)
+
+    # Handle top-level "pages" or nested "document.pages"
+    pages = obj.get("pages") or obj.get("document", {}).get("pages", [])
+
+    all_blocks = []
+
+    for page in pages:
+        for block in page.get("blocks", []):
+            # Flatten lines into spans if missing
+            if "lines" in block:
+                spans = []
+                for line in block["lines"]:
+                    line_spans = []
+                    for span in line.get("spans", []):
+                        if "text" in span and span["text"]:
+                            line_spans.append({"text": span["text"]})
+                    if line_spans:
+                        line["spans"] = line_spans
+                # Keep lines intact
+            else:
+                # If no lines but spans exist, create a dummy line for consistency
+                if "spans" in block and block["spans"]:
+                    block["lines"] = [{"spans": block["spans"]}]
+
+            # Normalize block type
+            if block.get("block_type") in ("footnotes",):
+                block["block_type"] = "paragraph"
+
+            if block.get("spans") or block.get("lines") or block.get("items"):
+                all_blocks.append(block)
+
+    print(f"Number of blocks to convert: {len(all_blocks)}")
+    return {"blocks": all_blocks}
+
+# ------------------------------------------------------------
+# STEP 2 — TABLE CONVERSION (KEPT FROM ORIGINAL)
+# ------------------------------------------------------------
 
 def convert_table_to_sgml(table_block: dict) -> str:
     """Converts table block into SGMLTBL structure."""
@@ -130,7 +111,7 @@ def convert_table_to_sgml(table_block: dict) -> str:
                 col_index += colspan
             output.append("</TBLROW>")
 
-        output.append("</TBLROWS>")
+        output.append("</TBLCROWS>")
         output.append("</TBLHEAD>")
 
     if body_rows:
@@ -164,51 +145,75 @@ def convert_table_to_sgml(table_block: dict) -> str:
     return "\n".join(output)
 
 # ------------------------------------------------------------
-# STEP 2 — CONVERT TO SGML
+# STEP 3 — SGML CONVERSION
 # ------------------------------------------------------------
+
+def tag_block(block: dict) -> str:
+    """Converts a block dict to SGML according to strict rules."""
+    b_type = block.get("block_type")
+    level = block.get("level", 1)  # default heading level
+    sgml_parts = []
+
+    if b_type == "heading":
+        text = " ".join(span.get("text", "") for span in block.get("spans", []))
+        if text.strip():
+            sgml_parts.append(f"<BLOCK{level}><TI>{escape_text(text.strip())}</TI>")
+
+    elif b_type == "paragraph":
+        lines = block.get("lines", [])
+        if lines:
+            sgml_parts.append("<PARAGRAPH>")
+            for line in lines:
+                line_text = " ".join(span.get("text", "") for span in line.get("spans", []))
+                if line_text.strip():
+                    sgml_parts.append(f"<LINE>{escape_text(line_text.strip())}</LINE>")
+            sgml_parts.append("</PARAGRAPH>")
+        else:
+            for span in block.get("spans", []):
+                text = span.get("text")
+                if text:
+                    sgml_parts.append(f"<P>{escape_text(text.strip())}</P>")
+
+    elif b_type == "list":
+        items = block.get("items", [])
+        for item in items:
+            text = item.get("text", "")
+            if text.strip():
+                sgml_parts.append(f"<ITEM><P>{escape_text(text.strip())}</P></ITEM>")
+
+    elif b_type == "address_block":
+        sgml_parts.append("<ADDRESS>")
+        lines = block.get("lines", [])
+        for line in lines:
+            line_text = " ".join(span.get("text", "") for span in line.get("spans", []))
+            if line_text.strip():
+                sgml_parts.append(f"<LINE>{escape_text(line_text.strip())}</LINE>")
+        sgml_parts.append("</ADDRESS>")
+
+    elif b_type == "table":
+        table_sgml = convert_table_to_sgml(block)
+        if table_sgml:
+            sgml_parts.append(table_sgml)
+
+    else:
+        print(f"Warning: Unsupported block_type '{b_type}' ignored.")
+
+    return "\n".join(sgml_parts)
 
 def convert_compiled_to_sgml(compiled_json: dict) -> str:
     output_lines = []
     blocks = compiled_json.get("blocks", [])
 
-    print(f"Number of blocks to convert: {len(blocks)}")
-
     if not isinstance(blocks, list):
         raise ValueError("Invalid compiled JSON: 'blocks' must be a list.")
 
+    print(f"Number of blocks to convert: {len(blocks)}")
+
     for i, block in enumerate(blocks):
-        block_type = block.get("block_type")
-        print(f"Processing block {i}: type={block_type}, keys={list(block.keys())}")
-
-        if not block_type:
-            continue
-
-        if block_type in ("paragraph", "heading"):
-            spans = block.get("spans", [])
-            for span in spans:
-                text = span.get("text") or span.get("Text")
-                if text:
-                    tagged = tag_text(block_type, text)
-                    if tagged:
-                        output_lines.append(tagged)
-
-        elif block_type == "list":
-            items = block.get("items", [])
-            for item in items:
-                text = item.get("text")
-                if text:
-                    tagged = tag_text("list", text)
-                    if tagged:
-                        output_lines.append(tagged)
-
-        elif block_type == "table":
-            table_sgml = convert_table_to_sgml(block)
-            if table_sgml:
-                output_lines.append(table_sgml)
-
-        else:
-            print(f"Warning: Unsupported block_type '{block_type}' ignored.")
-            continue
+        print(f"Processing block {i}: type={block.get('block_type')}, keys={list(block.keys())}")
+        sgml_block = tag_block(block)
+        if sgml_block:
+            output_lines.append(sgml_block)
 
     return "\n".join(output_lines)
 

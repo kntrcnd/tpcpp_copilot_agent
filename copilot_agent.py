@@ -206,73 +206,115 @@ def convert_json_to_sgml_strict(json_file, pdf_name):
     with open(json_file, "r", encoding="utf-8") as f:
         compiled_json = json.load(f)
 
-    # ------------------ Helper: tag block ------------------
-    def tag_text(block_type: str, text: str, level=None) -> str:
-        if not text:
-            return ""
-        stripped = text.strip()
-        if block_type == "heading":
-            if level:
-                return f"<BLOCK{level}><TI>{stripped}</TI>"
-            return f"<TI>{stripped}</TI>"
-        elif block_type == "paragraph":
-            return f"<P>{stripped}</P>"
-        elif block_type == "list":
-            return f"<ITEM><P>{stripped}</P></ITEM>"
-        elif block_type == "address_block":
-            return f"<ADDRESS><LINE>{stripped}</LINE></ADDRESS>"
-        elif block_type == "paragraph_lines":
-            return f"<PARAGRAPH><LINE>{stripped}</LINE></PARAGRAPH>"
-        else:
-            return f"<P>{stripped}</P>"
-
-    # ------------------ Build SGML ------------------
     sgml_lines = []
 
+    # Track currently open BLOCK levels
+    open_blocks = []
+
+    # ------------------ Helper: close blocks ------------------
+    def close_blocks(target_level=0):
+        nonlocal open_blocks
+        while open_blocks and open_blocks[-1] >= target_level:
+            level = open_blocks.pop()
+            sgml_lines.append(f"</BLOCK{level}>")
+
+    # ------------------ Helper: open heading ------------------
+    def open_heading(level, text):
+        nonlocal open_blocks
+
+        level = int(level) if str(level).isdigit() else 1
+
+        # close deeper blocks
+        close_blocks(level)
+
+        sgml_lines.append(f"<BLOCK{level}>")
+        sgml_lines.append(f"<TI>{text.strip()}</TI>")
+
+        open_blocks.append(level)
+
+    # ------------------ Begin processing ------------------
+
     pages = compiled_json.get("document", {}).get("pages", [])
+
     for page in pages:
         page_num = page.get("page_number", 0)
+
         sgml_lines.append(f"<N>{page_num}</N>")
+
         pdf_filename = f"{pdf_name}P{page_num}.PDF"
-        sgml_lines.append(f'<GRAPHIC FILENAME="{pdf_filename}"><LINKTEXT>Original Image of this Document (PDF)</LINKTEXT></GRAPHIC>')
+
+        sgml_lines.append(
+            f'<GRAPHIC FILENAME="{pdf_filename}"><LINKTEXT>Original Image of this Document (PDF)</LINKTEXT></GRAPHIC>'
+        )
+
         sgml_lines.append("<FREEFORM>")
 
         blocks = page.get("blocks", [])
+
         for block in blocks:
             b_type = block.get("block_type")
 
-            # heading
+            # ------------------ Heading ------------------
             if b_type == "heading":
-                level = block.get("level", "")
-                for span in block.get("spans", []):
-                    text = span.get("text", "")
-                    sgml_lines.append(tag_text("heading", text, level))
+                level = block.get("level", 1)
 
-            # paragraph
+                for span in block.get("spans", []):
+                    text = span.get("text", "").strip()
+                    if text:
+                        open_heading(level, text)
+
+            # ------------------ Paragraph ------------------
             elif b_type == "paragraph":
                 for span in block.get("spans", []):
-                    text = span.get("text", "")
-                    sgml_lines.append(tag_text("paragraph", text))
+                    text = span.get("text", "").strip()
+                    if text:
+                        sgml_lines.append(f"<P>{text}</P>")
 
-            # list
+            # ------------------ List ------------------
             elif b_type == "list":
+
+                sgml_lines.append("<LIST>")
+
                 for item in block.get("items", []):
-                    # item may have spans
+
                     if "spans" in item:
                         for span in item["spans"]:
-                            text = span.get("text", "")
-                            sgml_lines.append(tag_text("list", text))
+                            text = span.get("text", "").strip()
+                            if text:
+                                sgml_lines.append(f"<ITEM><P>{text}</P></ITEM>")
+
                     else:
-                        text = item.get("text", "")
-                        sgml_lines.append(tag_text("list", text))
+                        text = item.get("text", "").strip()
+                        if text:
+                            sgml_lines.append(f"<ITEM><P>{text}</P></ITEM>")
 
-            # paragraph with lines / address_block
-            elif b_type in ("paragraph_lines", "address_block"):
+                sgml_lines.append("</LIST>")
+
+            # ------------------ Address Block ------------------
+            elif b_type == "address_block":
+
+                sgml_lines.append("<ADDRESS>")
+
                 for line in block.get("lines", []):
-                    text = line.get("text", "")
-                    sgml_lines.append(tag_text(b_type, text))
+                    text = line.get("text", "").strip()
+                    if text:
+                        sgml_lines.append(f"<LINE>{text}</LINE>")
 
-            # table
+                sgml_lines.append("</ADDRESS>")
+
+            # ------------------ Paragraph Lines ------------------
+            elif b_type == "paragraph_lines":
+
+                sgml_lines.append("<PARAGRAPH>")
+
+                for line in block.get("lines", []):
+                    text = line.get("text", "").strip()
+                    if text:
+                        sgml_lines.append(f"<LINE>{text}</LINE>")
+
+                sgml_lines.append("</PARAGRAPH>")
+
+            # ------------------ Table ------------------
             elif b_type == "table":
                 table_sgml = convert_table_to_sgml(block)
                 if table_sgml:
@@ -283,14 +325,23 @@ def convert_json_to_sgml_strict(json_file, pdf_name):
 
         sgml_lines.append("</FREEFORM>")
 
+    # Close any remaining open blocks
+    close_blocks(0)
+
+    sgml_text = "\n".join(sgml_lines)
+
     # ------------------ Save SGML ------------------
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
     sgml_file = os.path.join(OUTPUT_ROOT_1, f"{pdf_name}_{timestamp}.sgml")
+
     os.makedirs(os.path.dirname(sgml_file), exist_ok=True)
+
     with open(sgml_file, "w", encoding="utf-8") as f:
-        f.write("\n".join(sgml_lines))
+        f.write(sgml_text)
 
     print(f"SGML saved -> {sgml_file}")
+
+    return sgml_text
 
 # ---------------- GitHub PDF fetch ----------------
 username = "kntrcnd"
