@@ -2,12 +2,13 @@ import json
 from pathlib import Path
 import re
 import html
+from datetime import datetime
 
 # ------------------------------------------------------------
 # CONFIG
 # ------------------------------------------------------------
 
-INPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\JSON\2020Ont15279-1-Affidavit of Bruce Arnott\2020Ont15279-1-Affidavit of Bruce Arnott_compiled_2026-03-12_14-07-53.json")
+INPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\JSON\2023NS458-1-Notice of Action\2023NS458-1-Notice of Action_compiled_2026-03-12_14-20-11.json")
 OUTPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\SGML\script\output.sgml")
 
 # ------------------------------------------------------------
@@ -148,6 +149,19 @@ def convert_table_to_sgml(table_block: dict) -> str:
 # STEP 3 — SGML CONVERSION
 # ------------------------------------------------------------
 
+def render_spans_to_sgml_text(spans) -> str:
+    """Join spans preserving italics via <EM>…</EM> (escaped as SGML)."""
+    parts = []
+    for sp in spans or []:
+        txt = escape_text(sp.get("text", ""))
+        styles = [s.lower() for s in sp.get("styles", [])] if isinstance(sp.get("styles", []), list) else []
+        if "italic" in styles:
+            parts.append(f"&lt;EM&gt;{txt}&lt;/EM&gt;")
+        else:
+            parts.append(txt)
+    # Join without inserting extra spaces between spans; rely on OCR text as-is
+    return "".join(parts).strip()
+
 def tag_block(block: dict) -> str:
     """Converts a block dict to SGML according to strict rules."""
     b_type = block.get("block_type")
@@ -189,6 +203,33 @@ def tag_block(block: dict) -> str:
             if line_text.strip():
                 sgml_parts.append(f"<LINE>{escape_text(line_text.strip())}</LINE>")
         sgml_parts.append("</ADDRESS>")
+    
+    elif b_type == "party_block":
+        lines = block.get("lines", [])
+        # Fallback: if no lines but spans exist, treat as a single generic line
+        if not lines and block.get("spans"):
+            lines = [{"spans": block["spans"]}]
+
+        tag_map = {
+            "label": "LINE",
+            "party": "PARTY",
+            "party_role": "PARTYROLE",
+            "connector": "CONNECTOR",
+            "act_under": "ACTUNDER"
+        }
+
+        sgml_parts.append("&lt;PARTYBLOCK&gt;")
+        for line in lines:
+            # default to LINE if line_type missing/unknown
+            line_type = (line.get("line_type") or "").lower()
+            tag = tag_map.get(line_type, "LINE")
+
+            text_sgml = render_spans_to_sgml_text(line.get("spans", []))
+            if not text_sgml:
+                continue
+
+            sgml_parts.append(f"&lt;{tag}&gt;{text_sgml}&lt;/{tag}&gt;")
+        sgml_parts.append("&lt;/PARTYBLOCK&gt;")
 
     elif b_type == "table":
         table_sgml = convert_table_to_sgml(block)
@@ -216,6 +257,35 @@ def convert_compiled_to_sgml(compiled_json: dict) -> str:
             output_lines.append(sgml_block)
 
     return "\n".join(output_lines)
+
+def convert_json_to_sgml_strict(json_file, pdf_name, output_root):
+    json_file = Path(json_file)
+
+    if not json_file.exists():
+        raise FileNotFoundError(f"Input file not found: {json_file}")
+
+    raw_text = json_file.read_text(encoding="utf-8")
+
+    print("Compiling JSON stream...")
+    compiled_json = compile_json_stream(raw_text)
+
+    print("Converting to SGML...")
+    sgml_output = convert_compiled_to_sgml(compiled_json)
+
+    if not sgml_output.strip():
+        raise ValueError("SGML output is empty. Check JSON structure.")
+
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    sgml_file = Path(output_root) / f"{pdf_name}_{timestamp}.sgml"
+
+    sgml_file.parent.mkdir(parents=True, exist_ok=True)
+
+    sgml_file.write_text(sgml_output, encoding="utf-8")
+
+    print(f"SGML conversion completed successfully.")
+    print(f"Output written to: {sgml_file}")
+
+    return sgml_output
 
 # ------------------------------------------------------------
 # MAIN
