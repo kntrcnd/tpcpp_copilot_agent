@@ -7,7 +7,7 @@ import html
 # CONFIG
 # ------------------------------------------------------------
 
-INPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\JSON\2024NS318-17-Letterhead Factum\2024NS318-17-Letterhead Factum_compiled_2026-03-10_12-19-36.json")
+INPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\JSON\2020Ont15279-1-Affidavit of Bruce Arnott\2020Ont15279-1-Affidavit of Bruce Arnott_compiled_2026-03-12_14-07-53.json")
 OUTPUT_PATH = Path(r"D:\Projects\GitHub\tpcpp_copilot_agent\test_output\SGML\script\output.sgml")
 
 # ------------------------------------------------------------
